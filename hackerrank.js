@@ -558,3 +558,208 @@ lonelyinteger(a) */
 
 ///////////////////////////////////////////////////////////////////
 
+/* function countingSort(arr) {
+    let output = Array(100).fill(0)
+
+    arr.map(function(element){
+        output[element] += 1
+    })
+
+    return output
+
+}
+
+const a = [1,1,3,2,1,4]
+
+countingSort(a) */
+
+//////////////////////////////////////////////////////////
+
+/* function flippingMatrix(matrix) {
+    let n = matrix.length / 2
+    let max = 0
+    let total = 0
+
+    for (let row = 0; row < n; row++) {
+        for (let col = 0; col < n; col++) {
+            max = Number.MIN_VALUE
+            max = Math.max(matrix[row][col], max)
+            max = Math.max(matrix[row][2 * n - col - 1], max)
+            max = Math.max(matrix[2 * n - row - 1][col], max)
+            max = Math.max(matrix[2 * n - row - 1][2 * n - col - 1], max)
+            
+            total += max
+        }
+    }
+
+    return total
+
+}
+
+const matrix = [[112,42,83,119],
+                [56,125,56,49],
+                [15,78,101,43],
+                [62,98,114,108]]
+
+const matriz_2 = [[1,2],
+                  [3,4]]
+
+flippingMatrix(matrix)
+console.log(flippingMatrix(matriz_2)) */
+
+/////////////////////////////////////
+
+/* function hourglassSum(arr) {
+    let max = -63
+
+    for (let row = 0; row < 4; row++) {
+        for (let col = 0; col < 4; col++) {
+            let sum = arr[row + 1][col + 1]
+            for (let k = 0; k < 3; k++) {
+                sum += arr[row][col + k]
+                sum += arr[row + 2][col + k]
+            }
+            if (sum > max) max = sum
+        }
+    }
+
+    return max
+}
+
+const a = [[1, 1, 1, 0, 0, 0],
+[0, 1, 0, 0, 0, 0],
+[1, 1, 1, 0, 0, 0],
+[0, 0, 2, 4, 4, 0],
+[0, 0, 0, 2, 0, 0],
+[0, 0, 1, 2, 4, 0]]
+
+console.log(hourglassSum(a)) */
+
+//////////////////////////////////////////////////////
+
+/* function towerBreakers(n, m) {
+
+    return n % 2 === 1 && m > 1 ? 1 : 2
+
+}
+
+console.log(towerBreakers(1,4)) */
+
+
+/* function caesarCipher(s, k) {
+    const Alphabet_min = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    const Alphabet_may = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    const Number = ['0','1','2','3','4','5','6','7','8','9']
+    const Caracters = [`'`, '-', ',','.','!','`','_','/','*','[',']','{','}','(',')','<','>']
+    const K = k % Alphabet_may.length
+    let Reverse_min = [].concat(Alphabet_min.slice(K),Alphabet_min.slice(0,K)),
+        Reverse_may = [].concat(Alphabet_may.slice(K),Alphabet_may.slice(0,K)),
+        word = '', n = 100, output = ''
+
+    for (let i = 0; i < n; i++) {
+        Alphabet_min.forEach((element, index) => {
+            if (element === s.charAt(i)) {
+                word = Reverse_min[index]
+                output += word
+            }
+            if (Alphabet_may[index] === s.charAt(i)) {
+                word = Reverse_may[index]
+                output += word
+            }
+            if (Caracters[index] === s.charAt(i)) {
+                word = s.charAt(i)
+                output += word
+            }
+            if(Number[index] === s.charAt(i)){
+                word = s.charAt(i)
+                output += word
+            }
+        })
+    }
+    console.log(Reverse_min)
+    return output
+}
+
+console.log(caesarCipher(`1X7T4VrCs23k4vv08D6yQ3S19G4rVP188M9ahuxB6j1tMGZs1m10ey7eUj62WV2exLT4C83zl7Q80M`, 27)) */
+
+/////////////////////////////////////////////////////////
+
+/* function palindromeIndex(s) {
+
+    function isPalindrome(s) {
+        for (let i = 0; i < Math.floor(s.length); i++) {
+            if (s[i] !== s[s.length - i - 1]) {
+                return false
+            }
+        }
+        return true
+    }
+
+    if (isPalindrome(s)) {
+        return -1
+    } else {
+        for (let i = 0; i < Math.floor(s.length / 2); i++) {
+            if (s[i] !== s[s.length - i - 1]) {
+                let spliced = s.substring(0, i) + s.substring(i + 1)
+                if (isPalindrome(spliced)) {
+                    return i
+                } else {
+                    return s.length - i - 1 
+                }
+            }
+        }
+    }
+}
+
+console.log(palindromeIndex('aaab'))
+console.log(palindromeIndex('baa')) */
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+/* function gridChallenge(grid) {
+    function sortAlphabet(grid) {
+        let output = grid.map(e => e.split('').sort().join(''))
+        return output
+    }
+
+    let Alphabet = sortAlphabet(grid)
+    let indice = 0, count = 0
+    console.log(Alphabet)
+
+    for (let i = 0; i <= Alphabet.length; i++) {
+        for (let j = 0; j < Alphabet.length; j++) {
+            let words = Alphabet[j]
+            let wordCode = words.charCodeAt(indice)
+            console.log(wordCode, count)
+            if (wordCode >= 97 && wordCode <= 127) {
+                if (wordCode > count) {
+                    count = wordCode
+                } else if (wordCode < count) {
+                    return 'NO'
+                }
+            }
+        }
+        indice += 1
+        count = 0
+
+    }
+
+    return 'YES'
+}
+
+const a = ['ebacd', 'fghij', 'olmkn', 'trpqs']
+const b = ['mpxz','abcd','wlmf']
+const c = ['abc','lmp','qrt']
+const d = ['abc','hjk','mpq','rtv']
+//console.log(gridChallenge(a))
+console.log(gridChallenge(b))
+//console.log(gridChallenge(c))
+//console.log(gridChallenge(d))
+
+ */
+
+////////////////////////////////////////////
+
+function superDigit(n, k){
+    
+}
